@@ -1,0 +1,17 @@
+steps:
+  - id: 'build latest'
+    name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: 
+      - '-c'
+      - |
+          docker build -t gcr.io/$PROJECT_ID/cloud-builders-helm:latest -f Dockerfile  .        
+
+### Publish
+  - id: 'publish latest'
+    name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: 
+      - '-c'
+      - |
+          docker push gcr.io/$PROJECT_ID/cloud-builders-helm:latest
